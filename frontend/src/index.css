@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.customRadius {
+  border-radius: 50% 50% 76% 24% / 30% 39% 61% 70%;
+}
