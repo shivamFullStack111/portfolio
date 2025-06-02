@@ -10,11 +10,15 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import Footer from "../../components/Footer";
+import ResumePopUp from "../../components/ResumePopUp";
 
 const Home = () => {
   const [sideBarOpen, setsideBarOpen] = useState(false);
+  const [resumeOpen, setresumeOpen] = useState(false);
+
   return (
     <div>
+      {resumeOpen && <ResumePopUp open={resumeOpen} setopen={setresumeOpen} />}
       {sideBarOpen && (
         <div
           onClick={() => setsideBarOpen(false)}
@@ -52,7 +56,9 @@ const Home = () => {
             <div className="relative z-40 flex flex-col items-end ">
               {" "}
               <div
-                onClick={() => setsideBarOpen((p) => !p)}
+                onClick={() => {
+                  setsideBarOpen((p) => !p);
+                }}
                 className=" max-h-12 max-w-12 cursor-pointer min-h-12 min-w-12 flex justify-center items-center rotate-0 text-black rounded-full"
                 style={{ backgroundColor: primary }}
               >
@@ -74,6 +80,10 @@ const Home = () => {
                   </motion.div>
                   <motion.div
                     initial={{ x: 80, y: 20 }}
+                    onClick={() => {
+                      setresumeOpen(true);
+                      setsideBarOpen(false);
+                    }}
                     animate={{ x: 0, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.2 }}
                     className="mt-3 cursor-pointer hover:text-[#E6FF00]  text-right"
@@ -228,7 +238,7 @@ const Home = () => {
       </div>
 
       {/* footer  */}
-    <Footer/>
+      <Footer />
     </div>
   );
 };
