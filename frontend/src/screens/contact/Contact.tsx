@@ -1,7 +1,6 @@
-import { FaArrowLeft, FaWhatsapp } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { primary } from "../../utils";
-import { SiMaildotru } from "react-icons/si";
 import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
 
