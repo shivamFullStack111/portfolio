@@ -2,6 +2,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Home from "./screens/home/Home";
 import ImageLoader from "./components/ImageLoader";
 import Contact from "./screens/contact/Contact";
+import Projects from "./screens/projects/Projects";
 const App = () => {
   return (
     <div className="container overflow-y-hidden mx-auto px-4">
@@ -11,6 +12,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/projects" element={<Projects />} />
         </Routes>
       </BrowserRouter>
     </div>

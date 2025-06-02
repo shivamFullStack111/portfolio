@@ -90,14 +90,15 @@ const Home = () => {
                   >
                     Resume
                   </motion.div>
-                  <motion.div
+                 <Link to={'/projects'}> <motion.div
                     initial={{ x: 80, y: 20 }}
                     animate={{ x: 0, y: 0 }}
                     transition={{ duration: 0.3, delay: 0.4 }}
-                    className="mt-3 cursor-pointer hover:text-[#E6FF00]  text-right"
+                    className="mt-3 cursor-pointer hover:text-[#E6FF00] text-right"
+                    
                   >
-                    Portfolio
-                  </motion.div>
+                    Projects
+                  </motion.div></Link>
                   <motion.div
                     initial={{ x: 80, y: 20 }}
                     animate={{ x: 0, y: 0 }}
