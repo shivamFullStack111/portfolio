@@ -9,6 +9,7 @@ import Marquee from "react-fast-marquee";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
+import Footer from "../../components/Footer";
 
 const Home = () => {
   const [sideBarOpen, setsideBarOpen] = useState(false);
@@ -95,14 +96,17 @@ const Home = () => {
                   >
                     Blog
                   </motion.div>
-                  <motion.div
-                    initial={{ x: 80, y: 20 }}
-                    animate={{ x: 0, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.8 }}
-                    className="mt-3 cursor-pointer hover:text-[#E6FF00]  text-right"
-                  >
-                    Contact
-                  </motion.div>
+                  <Link to={"/contact"}>
+                    {" "}
+                    <motion.div
+                      initial={{ x: 80, y: 20 }}
+                      animate={{ x: 0, y: 0 }}
+                      transition={{ duration: 0.3, delay: 0.8 }}
+                      className="mt-3 cursor-pointer hover:text-[#E6FF00]  text-right"
+                    >
+                      Contact
+                    </motion.div>
+                  </Link>
                 </div>
               )}
             </div>
@@ -224,14 +228,7 @@ const Home = () => {
       </div>
 
       {/* footer  */}
-      <footer className="w-full py-14  flex justify-between items-center text-gray-400 font-semibold text-sm">
-        <p>Copyright 2022 - All right reserved</p>
-        <div className="flex gap-5 items-center">
-          <p className="hover:text-[#E6FF00] cursor-pointer">Gihub</p>
-          <p className="hover:text-[#E6FF00] cursor-pointer">Linkedin</p>
-          <p className="hover:text-[#E6FF00] cursor-pointer">Instagram</p>
-        </div>
-      </footer>
+    <Footer/>
     </div>
   );
 };
