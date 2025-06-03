@@ -137,6 +137,87 @@ const Projects = () => {
             </div>
           </div>
         </div>
+        <div className="w-[31.5%] h-[310px] ">
+          <img
+            src="gatepass.jpeg"
+            alt=""
+            style={{ objectFit: "contain" }}
+            className="h-[200px] bg-contain  w-full border border-gray-500"
+          />
+          <div className="p-1">
+            <p className="font-semibold text-[#E6FF00]">Gate Pass</p>
+            <p className="text-gray-300 text-[12px] italic">
+              Developed a Gate Pass mobile app to eliminate paperwork and solve
+              faculty issues by enabling real-time notifications.
+            </p>
+            <div className="flex justify-end p-2">
+              <span
+              // target="_blank"
+              // to={"https://urban-cart-nextjs.vercel.app/"}
+              >
+                <CustomButton
+                  className="text-sm px-5"
+                  onClick={() => {}}
+                  title="Not Available"
+                />
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="w-[31.5%] h-[310px] ">
+          <img
+            src="wonder.jpeg"
+            alt=""
+            style={{ objectFit: "contain" }}
+            className="h-[200px] bg-contain  w-full border border-gray-500"
+          />
+          <div className="p-1">
+            <p className="font-semibold text-[#E6FF00]">Wonder</p>
+            <p className="text-gray-300 text-[12px] italic">
+              Beautifull wallpaper download mobile app developed using react
+              native and 3rd party API
+            </p>
+            <div className="flex justify-end p-2">
+              <Link
+                target="_blank"
+                to="https://expo.dev/accounts/shivam11111/projects/Wonder/builds/8d4c68a5-a878-4a56-a7fa-8192ca9dffed"
+              >
+                <CustomButton
+                  className="text-sm px-5"
+                  onClick={() => {}}
+                  title="Download"
+                />
+              </Link>
+            </div>
+          </div>
+        </div>
+        <div className="w-[31.5%] h-[310px] ">
+          <img
+            src="food-delivery.jpeg"
+            alt=""
+            style={{ objectFit: "contain" }}
+            className="h-[200px] bg-contain  w-full border border-gray-500"
+          />
+          <div className="p-1">
+            <p className="font-semibold text-[#E6FF00]">Delivery App</p>
+            <p className="text-gray-300 text-[12px] italic">
+              Developed multivendor food delivery mobile app. Google Map and
+              Mapbox is used for real-time tracking system.
+            </p>
+            <div className="flex justify-end p-2">
+              <span
+              // target="_blank"
+              // to={"https://urban-cart-nextjs.vercel.app/"}
+              >
+                <CustomButton
+                  className="text-sm px-5"
+                  onClick={() => {}}
+                  title="Not Available"
+                />
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <Footer />
