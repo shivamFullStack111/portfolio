@@ -5,7 +5,7 @@ import Contact from "./screens/contact/Contact";
 import Projects from "./screens/projects/Projects";
 const App = () => {
   return (
-    <div className="container overflow-y-hidden mx-auto px-4">
+    <div className=" overflow-y-hidden  px-4">
       <ImageLoader></ImageLoader>
 
       <BrowserRouter>

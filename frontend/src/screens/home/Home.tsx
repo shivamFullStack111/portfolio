@@ -28,7 +28,7 @@ const Home = () => {
       <div className="flex mt-10 gap-5">
         <div className="w-[30%]   relative  h-96">
           <img
-            src={"self.jpeg"}
+            src={"self.png"}
             className="h-full object-contain customRadius w-full  "
             alt=""
           />

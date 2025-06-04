@@ -6,7 +6,7 @@ const ImageLoader = () => {
       <motion.div initial={{opacity:1,y:0}} animate={{opacity:0,y:-100}} transition={{duration:0.4,delay:0.7}}  className="h-20 w-20 border-3 rounded-full overflow-hidden border-yellow-400 ">
         <img
         className="h-full w-full  "
-        src='self.jpeg'
+        src='self.png'
           alt=""
         />
       </motion.div>

@@ -3,12 +3,16 @@ import { Link } from "react-router-dom";
 import { primary } from "../../utils";
 import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
+import ProjectDetailPopUp from "./ProjectDetailPopUp";
+import { useState } from "react";
 
 const Projects = () => {
+  const [popUpOpen, setpopUpOpen] = useState(false);
+
   return (
-    <div>
+    <div className="">
       <Link to={"/"}>
-        <div className="p-3 text-xl cursor-pointer  bg-[#E6FF00] w-min my-3 text-black rounded-full ">
+        <div className="p-3 text-xl container  cursor-pointer  bg-[#E6FF00] w-min my-3 text-black rounded-full ">
           <FaArrowLeft />{" "}
         </div>
       </Link>
@@ -25,9 +29,14 @@ const Projects = () => {
         </p>
         <div className="flex w-full justify-center "></div>
       </div>
-
+      {popUpOpen && (
+        <ProjectDetailPopUp open={popUpOpen} setopen={setpopUpOpen} />
+      )}
       <div className="flex px-14 mt-12 flex-wrap gap-7 ">
-        <div className="w-[31.5%] h-[310px] ">
+        <div
+          onClick={() => setpopUpOpen(true)}
+          className="w-[31.5%] cursor-pointer h-[310px] "
+        >
           <img
             src="chat-fussion.png"
             alt=""
@@ -56,6 +65,7 @@ const Projects = () => {
             </div>
           </div>
         </div>
+
         <div className="w-[31.5%] h-[310px] ">
           <img
             src="ai-resume-builder.png"
