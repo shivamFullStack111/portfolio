@@ -48,7 +48,7 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
     try {
       setisLoading(true);
       const res = await axios.post(
-        "http://localhost:8000/feedback/create",
+        "https://portfolio-dcwm.onrender.com/feedback/create",
         {...feedbackForm,projectTitle:selectedProject.title}
       );
 

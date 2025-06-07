@@ -26,7 +26,7 @@ const Contact = () => {
     try {
       setisLoading(true);
       const res = await axios.post(
-        "http://localhost:8000/contact-form/create",
+        "https://portfolio-dcwm.onrender.com/contact-form/create",
         contactForm
       );
 
