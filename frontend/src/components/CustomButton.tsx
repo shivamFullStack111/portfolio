@@ -5,8 +5,8 @@ interface CUSTOMBUTTON_PROPS {
   onClick: () => void;
   className: string;
   title: string;
-  isLoading: boolean;
-  setisLoading: (val: boolean) => void;
+  isLoading?: boolean;
+  setisLoading?: (val: boolean) => void;
 }
 
 const CustomButton: React.FC<CUSTOMBUTTON_PROPS> = (props) => {

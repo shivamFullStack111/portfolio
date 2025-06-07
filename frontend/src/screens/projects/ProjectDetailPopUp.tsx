@@ -1,16 +1,27 @@
 import { motion } from "framer-motion";
 import { primary } from "../../utils";
 import { RxCross1 } from "react-icons/rx";
-import React, { useState } from "react";
+import React, { useState, type ChangeEvent } from "react";
 import CustomButton from "../../components/CustomButton";
 import { FaRegStar, FaStar } from "react-icons/fa";
 import type { PROJECT_DATA_TYPES } from "./projectsData";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 interface PROJECTDETAIL_POPUP {
   open: boolean;
   setopen: (value: boolean) => void;
   selectedProject: PROJECT_DATA_TYPES;
   setselectedProject: (val: PROJECT_DATA_TYPES) => void;
+}
+
+interface FEEDBACKFORM_TYPES {
+  projectTitle: string;
+  name: string;
+  email: string;
+  message: string;
+  rate: number;
 }
 
 const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
@@ -20,10 +31,39 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
   setselectedProject,
 }) => {
   const [isClosing, setisClosing] = useState(false);
-  const [formData, setformData] = useState({
-    rate: 0,
-  });
+
   const [selectedImage, setselectedImage] = useState("");
+
+  const [feedbackForm, setfeedbackForm] = useState<FEEDBACKFORM_TYPES>({
+    name: "",
+    email: "",
+    message: "",
+    rate: 0,
+    projectTitle: "",
+  });
+  const [isLoading, setisLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    try {
+      setisLoading(true);
+      const res = await axios.post(
+        "http://localhost:8000/feedback/create",
+        {...feedbackForm,projectTitle:selectedProject.title}
+      );
+
+      if (res.data.success) {
+        toast.success(res.data.message);
+        navigate("/");
+      }
+      if (!res.data.success) toast.error(res.data.message);
+
+      setisLoading(false);
+    } catch (error) {
+      if (error instanceof Error) toast.error(error.message);
+      setisLoading(false);
+    }
+  };
 
   return (
     <div className="fixed  z-40  flex justify-center items-start top-0 left-0 w-full h-screen">
@@ -141,18 +181,22 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
 
                 <div className="flex flex-wrap">
                   <InputField
-                    onChange={() => {}}
+                    onChange={(e) =>
+                      setfeedbackForm((p) => ({ ...p, name: e.target.value }))
+                    }
                     placeholder="Enter your name"
                     title="Name"
                     type="text"
-                    value=""
+                    value={feedbackForm.name}
                   />
                   <InputField
-                    onChange={() => {}}
+                    onChange={(e) =>
+                      setfeedbackForm((p) => ({ ...p, email: e.target.value }))
+                    }
+                    value={feedbackForm.email}
                     placeholder="Enter your email"
                     title="Email"
                     type="email"
-                    value=""
                   />
 
                   <div className="p-2 mt-4 w-2/2">
@@ -160,11 +204,14 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
                     <div className="flex justify-center gap-2">
                       {Array.from({ length: 5 }, (_, i) => i).map(
                         (i: number) => {
-                          if (i > formData.rate - 1) {
+                          if (i > feedbackForm.rate - 1) {
                             return (
                               <FaRegStar
                                 onClick={() =>
-                                  setformData((p) => ({ ...p, rate: i + 1 }))
+                                  setfeedbackForm((p) => ({
+                                    ...p,
+                                    rate: i + 1,
+                                  }))
                                 }
                                 className="text-2xl cursor-pointer"
                               />
@@ -173,7 +220,10 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
                             return (
                               <FaStar
                                 onClick={() =>
-                                  setformData((p) => ({ ...p, rate: i + 1 }))
+                                  setfeedbackForm((p) => ({
+                                    ...p,
+                                    rate: i + 1,
+                                  }))
                                 }
                                 className="text-2xl cursor-pointer text-[#E6FF00]"
                               />
@@ -193,6 +243,13 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
                       Message:
                     </label>
                     <textarea
+                      onChange={(e) =>
+                        setfeedbackForm((p) => ({
+                          ...p,
+                          message: e.target.value,
+                        }))
+                      }
+                      value={feedbackForm.message}
                       rows={5}
                       className="mt-1 outline-none border-b-2 focus:border-[#E6FF00]  w-full"
                       placeholder={"Enter your message"}
@@ -200,8 +257,12 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
                       id={"message"}
                     />
                     <CustomButton
+                      isLoading={isLoading}
+                      setisLoading={setisLoading}
                       className=" mt-4"
-                      onClick={() => {}}
+                      onClick={() => {
+                        handleSubmit();
+                      }}
                       title="Submit"
                     />
                   </div>
@@ -220,7 +281,7 @@ export default ProjectDetailPopUp;
 interface INPUTFIELD_TYPE {
   title: string;
   value: string;
-  onChange: () => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   type: string;
   placeholder: string;
 }
@@ -235,6 +296,7 @@ const InputField: React.FC<INPUTFIELD_TYPE> = (props) => {
         <input
           className="mt-1 outline-none border-b-2 focus:border-[#E6FF00]  w-full"
           placeholder={props.placeholder}
+          onChange={props.onChange}
           type={props.type}
           value={props.value}
           name={props.title}
