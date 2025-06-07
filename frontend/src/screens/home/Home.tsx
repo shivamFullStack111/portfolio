@@ -90,29 +90,24 @@ const Home = () => {
                   >
                     Resume
                   </motion.div>
-                 <Link to={'/projects'}> <motion.div
-                    initial={{ x: 80, y: 20 }}
-                    animate={{ x: 0, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.4 }}
-                    className="mt-3 cursor-pointer hover:text-[#E6FF00] text-right"
-                    
-                  >
-                    Projects
-                  </motion.div></Link>
-                  <motion.div
-                    initial={{ x: 80, y: 20 }}
-                    animate={{ x: 0, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.6 }}
-                    className="mt-3 cursor-pointer hover:text-[#E6FF00]  text-right"
-                  >
-                    Blog
-                  </motion.div>
+                  <Link to={"/projects"}>
+                    {" "}
+                    <motion.div
+                      initial={{ x: 80, y: 20 }}
+                      animate={{ x: 0, y: 0 }}
+                      transition={{ duration: 0.3, delay: 0.4 }}
+                      className="mt-3 cursor-pointer hover:text-[#E6FF00] text-right"
+                    >
+                      Projects
+                    </motion.div>
+                  </Link>
+                
                   <Link to={"/contact"}>
                     {" "}
                     <motion.div
                       initial={{ x: 80, y: 20 }}
                       animate={{ x: 0, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.8 }}
+                      transition={{ duration: 0.3, delay: 0.6 }}
                       className="mt-3 cursor-pointer hover:text-[#E6FF00]  text-right"
                     >
                       Contact
@@ -167,13 +162,14 @@ const Home = () => {
       </div>
       {/* about me  */}
       <p className="mt-14 text-gray-400 text-lg">
-        I'm a Creative Developer for interactive projects that usually are apps,
-        VR and Creative websites. I Spend most of time coding outstanding
-        projects or studying new technologies. to improve my development stack.
-        I develop compelling designs that spring to life using transition and
-        animations that suit my clients, using the most sophisticated
-        technologies available today for fully interactive and responsive
-        websites and apps.
+        A highly motivated and growth-focused full-stack web and mobile app
+        developer with a strong foundation in the MERN stack and React Native,
+        experienced in building scalable, real-time, and user-centric
+        applications such as food delivery platforms, chat systems, and
+        e-commerce solutions. Passionate about continuous learning and mastering
+        cutting-edge technologies like Mapbox, socket.io, and native modules to
+        deliver impactful, performance-optimized products while striving to
+        achieve excellence and a high-paying career in the tech industry.
       </p>
 
       {/* waht i do  */}

@@ -3,3 +3,31 @@
 .customRadius {
   border-radius: 50% 50% 76% 24% / 30% 39% 61% 70%;
 }
+/* ==== Slim Dark Scrollbar with Rounded Edges ==== */
+
+/* For Chrome, Safari, Edge */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(120, 120, 120, 0.6);
+  border-radius: 20px;
+  border: 1px solid transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(160, 160, 160, 0.8);
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(120, 120, 120, 0.6) transparent;
+}

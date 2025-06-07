@@ -1,10 +1,48 @@
 import { FaArrowLeft } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { primary } from "../../utils";
 import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
+import { useState, type ChangeEvent } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
+
+interface CONTACTFORM_TYPES {
+  name: string;
+  email: string;
+  message: string;
+}
 
 const Contact = () => {
+  const [contactForm, setcontactForm] = useState<CONTACTFORM_TYPES>({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isLoading, setisLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    try {
+      setisLoading(true);
+      const res = await axios.post(
+        "http://localhost:8000/contact-form/create",
+        contactForm
+      );
+
+      if (res.data.success) {
+        toast.success(res.data.message);
+        navigate("/");
+      }
+      if (!res.data.success) toast.error(res.data.message);
+
+      setisLoading(false);
+    } catch (error) {
+      if (error instanceof Error) toast.error(error.message);
+      setisLoading(false);
+    }
+  };
+
   return (
     <div>
       <Link to={"/"}>
@@ -25,20 +63,6 @@ const Contact = () => {
         </p>
         <div className="flex w-full justify-center "></div>
       </div>
-      {/* <div className="w-full  flex flex-wrap items-center">
-        <div className="flex  items-center w-1/2 mt-6 gap-4">
-          <p>
-            <FaWhatsapp color={primary} />
-          </p>
-          <p>+91 9464046810</p>
-        </div>
-        <div className="flex  items-center w-1/2 mt-6 gap-4">
-          <p>
-            <SiMaildotru color={primary} />
-          </p>
-          <p>shvam12340987@gmail.com</p>
-        </div>
-      </div> */}
 
       {/* form  */}
       <div className="flex justify-center mt-14 w-full">
@@ -52,18 +76,22 @@ const Contact = () => {
 
           <div className="flex flex-wrap">
             <InputField
-              onChange={() => {}}
+              onChange={(e) =>
+                setcontactForm((p) => ({ ...p, name: e.target.value }))
+              }
               placeholder="Enter your name"
               title="Name"
               type="text"
-              value=""
+              value={contactForm.name}
             />
             <InputField
-              onChange={() => {}}
+              onChange={(e) =>
+                setcontactForm((p) => ({ ...p, email: e.target.value }))
+              }
               placeholder="Enter your email"
               title="Email"
               type="email"
-              value=""
+              value={contactForm.email}
             />
             {/* message  */}
             <div className="p-2 mt-4 w-2/2">
@@ -71,13 +99,25 @@ const Contact = () => {
                 Message:
               </label>
               <textarea
+                onChange={(e) =>
+                  setcontactForm((p) => ({ ...p, message: e.target.value }))
+                }
+                value={contactForm.message}
                 rows={5}
                 className="mt-1 outline-none border-b-2 focus:border-[#E6FF00]  w-full"
                 placeholder={"Enter your message"}
                 name={"message"}
                 id={"message"}
               />
-              <CustomButton className=" mt-4" onClick={()=>{}} title="Submit" />
+              <CustomButton
+                className=" mt-4"
+                isLoading={isLoading}
+                setisLoading={setisLoading}
+                onClick={() => {
+                  handleSubmit();
+                }}
+                title="Submit"
+              />
             </div>
           </div>
         </div>
@@ -92,7 +132,7 @@ export default Contact;
 interface INPUTFIELD_TYPE {
   title: string;
   value: string;
-  onChange: () => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   type: string;
   placeholder: string;
 }
@@ -107,6 +147,7 @@ const InputField: React.FC<INPUTFIELD_TYPE> = (props) => {
         <input
           className="mt-1 outline-none border-b-2 focus:border-[#E6FF00]  w-full"
           placeholder={props.placeholder}
+          onChange={props.onChange}
           type={props.type}
           value={props.value}
           name={props.title}
