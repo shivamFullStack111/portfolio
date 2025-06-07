@@ -1,4 +1,3 @@
-import React from "react";
 import { primary } from "../utils";
 
 const WhatIDo = () => {
