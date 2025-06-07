@@ -4,7 +4,7 @@ import { primary } from "../../utils";
 import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
 import ProjectDetailPopUp from "./ProjectDetailPopUp";
-import { useState, type ChangeEvent } from "react";
+import { useState } from "react";
 import { projectsData, type PROJECT_DATA_TYPES } from "./projectsData";
 
 const Projects = () => {
@@ -104,10 +104,8 @@ const Projects = () => {
                       to="https://expo.dev/accounts/shivam11111/projects/Wonder/builds/8d4c68a5-a878-4a56-a7fa-8192ca9dffed"
                     >
                       <CustomButton
+                        onClick={() => {}}
                         className="text-sm px-5"
-                        onClick={(e: ChangeEvent<HTMLInputElement>) =>
-                          e.stopPropagation()
-                        }
                         title="Download"
                       />
                     </Link>
@@ -126,10 +124,8 @@ const Projects = () => {
                     // to={"https://urban-cart-nextjs.vercel.app/"}
                     >
                       <CustomButton
+                        onClick={() => {}}
                         className="text-sm px-5"
-                        onClick={(e: ChangeEvent<HTMLInputElement>) =>
-                          e.stopPropagation()
-                        }
                         title="Not Available"
                       />
                     </span>

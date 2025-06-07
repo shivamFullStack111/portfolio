@@ -12,7 +12,8 @@ interface CUSTOMBUTTON_PROPS {
 const CustomButton: React.FC<CUSTOMBUTTON_PROPS> = (props) => {
   return (
     <div
-      onClick={() => {
+      onClick={(e) => {
+        e.stopPropagation()
         if (props.isLoading) return;
         props.onClick();
       }}
