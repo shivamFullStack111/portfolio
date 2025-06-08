@@ -49,7 +49,7 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
       setisLoading(true);
       const res = await axios.post(
         "https://portfolio-dcwm.onrender.com/feedback/create",
-        {...feedbackForm,projectTitle:selectedProject.title}
+        { ...feedbackForm, projectTitle: selectedProject.title }
       );
 
       if (res.data.success) {
@@ -67,12 +67,12 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
 
   return (
     <div className="fixed  z-40  flex justify-center items-start top-0 left-0 w-full h-screen">
-      <div className="container flex justify-center items-center bg-[#00000071] rounded-lg h-screen shadow-lg p6">
+      <div className="container p6 flex justify-center items-center bg-[#00000071] rounded-lg h-screen shadow-lg ">
         <motion.div
           initial={{ scale: 0.7 }}
           animate={{ scale: isClosing ? 0 : open ? 1 : 0.7 }}
           transition={{ duration: 0.4 }}
-          className="w-[60%]h-[98%] w-full relative flex flex-col  overflow-y-auto mx-auto  bg-[#0b0b0b] border border-gray-400 rounded-lg overflow-hidden"
+          className="w-[60% h-[98%] md:h-[95%] w-full mx-auto  md:max-w-[650px] relative flex flex-col  overflow-y-auto bg-[#0b0b0b] border border-gray-400 rounded-lg overflow-hidden"
         >
           <RxCross1
             onClick={() => {

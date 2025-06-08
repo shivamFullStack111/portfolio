@@ -80,7 +80,7 @@ const Projects = () => {
                       onClick={(e) => e.stopPropagation()}
                       target="_blank"
                       to={
-                        "https://chat-fussion-chat-app-mern-stack-with-best-practices-s1ed.vercel.app/"
+                        project.webUrl
                       }
                     >
                       <CustomButton

@@ -199,19 +199,19 @@ const MainSection: React.FC<MAINSECTION_TYPES> = ({
           </div>
           <p className="border-b-2 border-gray-800 mt-6 w-[100%] mx-auto"></p>
           <div className="w-full max-lg:flex-col  flex flex-wrap lg:items-center">
-            <div className="flex  items-center lg:w-1/3 mt-6 gap-4">
+            <div className="flex  items-center lg:w-3/12 mt-6 gap-4">
               <p>
                 <SlCalender color={primary} />
               </p>
               <p>18 Feb 2004</p>
             </div>
-            <div className="flex  items-center lg:w-1/3 mt-6 gap-4">
+            <div className="flex  items-center lg:w-4/12 mt-6 gap-4">
               <p>
                 <FaWhatsapp color={primary} />
               </p>
               <p>+91 9464046810</p>
             </div>
-            <div className="flex  items-center lg:w-1/3 mt-6 gap-4">
+            <div className="flex  items-center lg:w-5/12 mt-6 gap-4">
               <p>
                 <SiMaildotru color={primary} />
               </p>
