@@ -49,7 +49,7 @@ const Projects = () => {
         />
       )}
 
-      <div className="flex px-14 mt-12 flex-wrap gap-7 ">
+      <div className="flex px-3 mt-12 flex-wrap gap-7 ">
         {projectsData?.map((project: PROJECT_DATA_TYPES) => {
           return (
             <div
@@ -57,12 +57,12 @@ const Projects = () => {
                 setpopUpOpen(true);
                 setselectedProject(project);
               }}
-              className="w-[31.5%] cursor-pointer h-[310px] "
+              className="w-[31.5%]h-[310px] md:w-[48%] lg:w-[31%] xl:w-[31.5%] w-full bg-gray-900   cursor-pointer  "
             >
               <img
                 src={project?.images[0]}
                 alt=""
-                className="h-[200px] bg-contain  mx-auto border border-gray-500"
+                className="h-[200px  h-[40vw] md:h-[20vw] lg:h-[15vw] max-h-[250px]  bg-contain  mx-auto border border-gray-500"
               />
               <div className="p-1">
                 <p className="font-semibold text-[#E6FF00]">{project.title}</p>
