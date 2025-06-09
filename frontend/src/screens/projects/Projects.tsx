@@ -57,7 +57,7 @@ const Projects = () => {
                 setpopUpOpen(true);
                 setselectedProject(project);
               }}
-              className="w-[31.5%]h-[310px] md:w-[48%] lg:w-[31%] xl:w-[31.5%] w-full bg-gray-900   cursor-pointer  "
+              className="w-[31.5%]h-[310px] md:w-[48%] lg:w-[31%] xl:w-[31.5%] w-full  cursor-pointer  "
             >
               <img
                 src={project?.images[0]}
