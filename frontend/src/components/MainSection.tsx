@@ -92,13 +92,23 @@ const MainSection: React.FC<MAINSECTION_TYPES> = ({
         />
         <div className="w-full -bottom-6 flex   overflow-hidden justify-center  absolute  z-20">
           <div className="rounded-2xl p-3 backdrop-blur-sm w-[70%] bg-[#ffffff24] flex justify-evenly">
-            <Link to={"i"} target="_blank">
+            <Link to={"https://github.com/shivamFullStack111"} target="_blank">
               <img className="h-6 w-6" alt="" src="github.png" />
             </Link>
-            <Link to={"i"} target="_blank">
+            <Link
+              to={
+                "https://www.linkedin.com/authwall?trk=gf&trkInfo=AQHoU2qirbQFXAAAAZddhcAACnoHR1KrYhGuXxDU0JgML2Cuzgcu1_hZnJ2Qf6LWbK8k9KkbbAq8b1Z5NptlZIN4zxL68Qnu3al7eLc3sR2CSz6okeb74fH_A2KIPOUqpXOsk-g=&original_referer=https://l.instagram.com/&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fshivam-%25E2%2580%258E-58621630b%3Futm_source%3Dshare%26utm_campaign%3Dshare_via%26utm_content%3Dprofile%26utm_medium%3Dandroid_app%26fbclid%3DPAZXh0bgNhZW0CMTEAAadOy_Gz6lIMKs-Mb8aHPRO-oxOuEfJjYZ9i7hQFpgKTSAWkC-WLaqJlNPyC2A_aem_Aa_ilbVioiRzS3ub4MtrRA&fbclid=PAQ0xDSwK191JleHRuA2FlbQIxMAABp9oO4YgkJSG2U0SYew6ghvQiurqrJQmMjSZRg0cvxrzr6w2pcCyiglmx1xyA_aem_vA4V8KQDqVEnTW-r4-EVEg"
+              }
+              target="_blank"
+            >
               <img className="h-6 w-6" alt="" src="linkedin.png" />
             </Link>
-            <Link to={"i"} target="_blank">
+            <Link
+              to={
+                "https://www.instagram.com/shiv_am_lll?igsh=MXE0YmJyb3V2Y3J2ag=="
+              }
+              target="_blank"
+            >
               <img className="h-6 w-6" alt="" src="instagram.png" />
             </Link>
           </div>
@@ -209,7 +219,7 @@ const MainSection: React.FC<MAINSECTION_TYPES> = ({
               <p>
                 <FaWhatsapp color={primary} />
               </p>
-              <p>+91 9464046810</p>
+              <p>+91 9417313393</p>
             </div>
             <div className="flex  items-center lg:w-5/12 mt-6 gap-4">
               <p>
