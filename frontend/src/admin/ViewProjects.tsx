@@ -19,7 +19,8 @@ const ViewProjects = () => {
 
   const fetchProjects = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api/projects");
+      const res = await axios.get("https://portfolio-dcwm.onrender.com/api/projects");
+      // const res = await axios.get("http://localhost:8000/api/projects");
       setProjects(res.data);
     } catch (err) {
       console.log(err);
@@ -33,7 +34,8 @@ const ViewProjects = () => {
   const deleteProject = async () => {
     try {
       await axios.delete(
-        `http://localhost:8000/api/projects/${selectedId}`,
+        `https://portfolio-dcwm.onrender.com/api/projects/${selectedId}`,
+        // `http://localhost:8000/api/projects/${selectedId}`,
         {
           headers: {
             "x-admin-secret": secret,

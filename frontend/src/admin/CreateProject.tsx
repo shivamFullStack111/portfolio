@@ -50,7 +50,8 @@ const CreateProject = () => {
     try {
 
       await axios.post(
-        "http://localhost:8000/api/projects",
+        "https://portfolio-dcwm.onrender.com/api/projects",
+        // "http://localhost:8000/api/projects",
         payload,
         {
           headers:{

@@ -36,7 +36,9 @@ const Projects = () => {
   const fetchProjects = async () => {
     try {
 
-      const res = await axios.get("http://localhost:8000/api/projects");
+      // const res = await axios.get("http://localhost:8000/api/projects");
+            const res = await axios.get("https://portfolio-dcwm.onrender.com/api/projects");
+
 
       setProjects(res.data);
 

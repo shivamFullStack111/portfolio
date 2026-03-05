@@ -30,7 +30,8 @@ const EditProject = () => {
 
   const fetchProject = async () => {
 
-    const res = await axios.get(`http://localhost:8000/api/projects/${id}`);
+    // const res = await axios.get(`http://localhost:8000/api/projects/${id}`);
+    const res = await axios.get(`https://portfolio-dcwm.onrender.com/api/projects/${id}`);
 
     setForm({
       ...res.data,
@@ -43,7 +44,8 @@ const EditProject = () => {
     try {
 
       await axios.put(
-        `http://localhost:8000/api/projects/${id}`,
+        `https://portfolio-dcwm.onrender.com/api/projects/${id}`,
+        // `http://localhost:8000/api/projects/${id}`,
         form,
         {
           headers: {
