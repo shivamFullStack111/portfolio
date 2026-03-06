@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const app = express();
+const path = require("path")
 
 mongoose
   .connect(
@@ -18,6 +19,7 @@ mongoose
 app.use(cors());
 app.use(express.json());
 
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // projects
 const projectRoutes = require("./routes/project.routes");
 app.use("/api/projects", projectRoutes);
@@ -29,14 +31,9 @@ app.use("/contact-form", contactFormRoutes);
 const feedbackRoutes = require("./projectFeedback/projectFeedbackController");
 app.use("/feedback", feedbackRoutes);
 
-
 app.get("/", (req, res) =>
   res.send({ success: true, message: "server running" }),
 );
-
-
-
-
 
 const cron = require("node-cron");
 const axios = require("axios");
@@ -53,10 +50,6 @@ cron.schedule("*/3 * * * *", async () => {
 });
 
 console.log("Cron job started. Running every 3 minutes...");
-
-
-
-
 
 app.listen(8000, () => {
   console.log("Running on:   ", "http://localhost:8000");
