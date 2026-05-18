@@ -4,6 +4,7 @@ import axios from "axios";
 import { FaTrash } from "react-icons/fa";
 import CustomButton from "../components/CustomButton";
 import Footer from "../components/Footer";
+import { backendURL } from "../utils";
 
 const EditProject = () => {
   const { id } = useParams();
@@ -29,7 +30,7 @@ const EditProject = () => {
 
   const fetchProject = async () => {
     const res = await axios.get(
-      `https://portfolio-dcwm.onrender.com/api/projects/${id}`,
+      backendURL + "/api/projects/" + id,
     );
 
     setForm({
@@ -119,7 +120,7 @@ const EditProject = () => {
       });
 
       await axios.put(
-        `https://portfolio-dcwm.onrender.com/api/projects/${id}`,
+        backendURL + "/api/projects/" + id,
         formData,
         {
           headers: {
@@ -255,7 +256,7 @@ const EditProject = () => {
             {form.images.map((img: string, index: number) => (
               <div key={index} className="relative">
                 <img
-                  src={"https://portfolio-dcwm.onrender.com"+img}
+                  src={backendURL+img}
                   // src={"http://localhost:8000" + img}
                   className="h-[120px] w-full object-cover border border-gray-600"
                 />

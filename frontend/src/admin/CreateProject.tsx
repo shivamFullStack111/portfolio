@@ -4,6 +4,7 @@ import CustomButton from "../components/CustomButton";
 import AdminLayout from "./AdminLayout";
 import Footer from "../components/Footer";
 import { FaTrash } from "react-icons/fa";
+import { backendURL } from "../utils";
 
 const CreateProject = () => {
 
@@ -86,8 +87,8 @@ const createProject = async () => {
   try{
 
     await axios.post(
-      "https://portfolio-dcwm.onrender.com/api/projects",
-      // "http://localhost:8000/api/projects",
+      backendURL + "/api/projects",
+      
       formData,
       {
         headers:{

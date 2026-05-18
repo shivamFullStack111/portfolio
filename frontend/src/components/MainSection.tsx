@@ -96,9 +96,7 @@ const MainSection: React.FC<MAINSECTION_TYPES> = ({
               <img className="h-6 w-6" alt="" src="github.png" />
             </Link>
             <Link
-              to={
-                "https://www.linkedin.com/in/shivam-64a486377/"
-              }
+              to={"https://www.linkedin.com/in/shivam-64a486377/"}
               target="_blank"
             >
               <img className="h-6 w-6" alt="" src="linkedin.png" />
@@ -194,7 +192,11 @@ const MainSection: React.FC<MAINSECTION_TYPES> = ({
               <p>I am a </p>&nbsp;{" "}
               <div style={{ color: primary }}>
                 <Typewriter
-                  words={["Web Developer", "App Developer", "Devops Engineer"]}
+                  words={[
+                    "Web Developer",
+                    "App Developer",
+                    "gen AI enthusiast",
+                  ]}
                   loop={0}
                   cursor
                   cursorStyle="|"

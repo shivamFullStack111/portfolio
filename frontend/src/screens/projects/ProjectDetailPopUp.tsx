@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { primary } from "../../utils";
+import { backendURL, primary } from "../../utils";
 import { RxCross1 } from "react-icons/rx";
 import React, { useState, type ChangeEvent } from "react";
 import CustomButton from "../../components/CustomButton";
@@ -59,7 +59,7 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
       setisLoading(true);
 
       const res = await axios.post(
-        "https://portfolio-dcwm.onrender.com/feedback/create",
+        backendURL+"/api/feedback",
         { ...feedbackForm, projectTitle: selectedProject.title }
       );
 
@@ -116,7 +116,7 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
           <div className="relative min-h-[340px] w-full">
 
             <img
-              src={selectedImage || selectedProject.images?.[0]}
+              src={selectedImage || backendURL + selectedProject.images?.[0]}
               className="h-full mx-auto"
               alt=""
             />
@@ -134,7 +134,7 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
                       selectedImage === img && "scale-110"
                     }`}
                   >
-                    <img src={img} className="h-full mx-auto" alt="" />
+                    <img src={backendURL + img} className="h-full  mx-auto" alt="" />
                   </div>
 
                 ))}

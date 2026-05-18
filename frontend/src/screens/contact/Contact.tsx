@@ -1,6 +1,6 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { primary } from "../../utils";
+import { backendURL, primary } from "../../utils";
 import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
 import { useState, type ChangeEvent } from "react";
@@ -26,9 +26,8 @@ const Contact = () => {
     try {
       setisLoading(true);
       const res = await axios.post(
-        "https://portfolio-dcwm.onrender.com/contact-form/create",
-        // "http://localhost:8000/contact-form/create",
-        contactForm
+        backendURL + "/contact-form/create",
+        contactForm,
       );
 
       if (res.data.success) {

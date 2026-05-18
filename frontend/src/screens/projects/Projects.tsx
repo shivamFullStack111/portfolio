@@ -1,6 +1,6 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { primary } from "../../utils";
+import { backendURL, primary } from "../../utils";
 import Footer from "../../components/Footer";
 import CustomButton from "../../components/CustomButton";
 import ProjectDetailPopUp from "./ProjectDetailPopUp";
@@ -36,8 +36,7 @@ const Projects = () => {
   const fetchProjects = async () => {
     try {
 
-      // const res = await axios.get("http://localhost:8000/api/projects");
-            const res = await axios.get("https://portfolio-dcwm.onrender.com/api/projects");
+      const res = await axios.get(backendURL+"/api/projects");
 
 
       setProjects(res.data);
@@ -98,7 +97,7 @@ const Projects = () => {
             >
 
               <img
-                src={project?.images?.[0]}
+                src={backendURL+project?.images?.[0]}
                 alt=""
                 className="h-[200px] md:h-[20vw] lg:h-[15vw] max-h-[250px] object-contain mx-auto border border-gray-500"
               />
