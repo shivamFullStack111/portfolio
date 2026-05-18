@@ -34,8 +34,8 @@ const ViewProjects = () => {
   const deleteProject = async () => {
     try {
       await axios.delete(
-        // `https://portfolio-dcwm.onrender.com/api/projects/${selectedId}`,
-        `http://localhost:8000/api/projects/${selectedId}`,
+        `https://portfolio-dcwm.onrender.com/api/projects/${selectedId}`,
+        // `http://localhost:8000/api/projects/${selectedId}`,
         {
           headers: {
             "x-admin-secret": secret,
@@ -68,8 +68,8 @@ const ViewProjects = () => {
           >
 
             <img
-                                            // src={"https://portfolio-dcwm.onrender.com"+project.images?.[0]}
-                                             src={"http://localhost:8000"+project.images?.[0]}
+                                            src={"https://portfolio-dcwm.onrender.com"+project.images?.[0]}
+                                            //  src={"http://localhost:8000"+project.images?.[0]}
 
 
               className="h-[180px] w-full object-cover border border-gray-500"

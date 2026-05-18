@@ -255,8 +255,8 @@ const EditProject = () => {
             {form.images.map((img: string, index: number) => (
               <div key={index} className="relative">
                 <img
-                  // src={"https://portfolio-dcwm.onrender.com"+img}
-                  src={"http://localhost:8000" + img}
+                  src={"https://portfolio-dcwm.onrender.com"+img}
+                  // src={"http://localhost:8000" + img}
                   className="h-[120px] w-full object-cover border border-gray-600"
                 />
 

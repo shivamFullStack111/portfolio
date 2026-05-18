@@ -40,7 +40,7 @@ const axios = require("axios");
 
 cron.schedule("*/3 * * * *", async () => {
   try {
-    // const response = await axios.get("http://localhost:8000/health");
+    // const response = await axios.get("http://localhost:8000/");
     const response = await axios.get("https://portfolio-dcwm.onrender.com/");
 
     console.log("Health check success:", response.data);
