@@ -86,7 +86,9 @@ const MainSection: React.FC<MAINSECTION_TYPES> = ({
           )}
         </div>
         <img
-          src={"self.png"}
+          src={
+            "https://res.cloudinary.com/dosyxpa1r/image/upload/v1779123983/self_stueku.png"
+          }
           className="h-full object-contain customRadius w-full  "
           alt=""
         />

@@ -7,7 +7,7 @@ const ImageLoader = () => {
         <img
         className="h-full w-full  "
         // src='/self.png'
-        src='/public/self.png'
+        src='https://res.cloudinary.com/dosyxpa1r/image/upload/v1779123983/self_stueku.png'
           alt=""
         />
       </motion.div>
