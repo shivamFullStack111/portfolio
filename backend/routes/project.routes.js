@@ -51,6 +51,8 @@ router.post("/", adminAuth, upload.array("images", 10), async (req, res) => {
   } catch (err) {
     res.send({success:false, message: err.message });
   }
+
+  
 });
 
 /* UPDATE */
