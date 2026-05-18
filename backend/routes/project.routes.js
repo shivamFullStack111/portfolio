@@ -47,9 +47,9 @@ router.post("/", adminAuth, upload.array("images", 10), async (req, res) => {
       images: imagePaths,
     });
 
-    res.json(project);
+    res.send({success:true, project});
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.send({success:false, message: err.message });
   }
 });
 
