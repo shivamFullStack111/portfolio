@@ -12,8 +12,8 @@ const EditProject = () => {
   const [form, setForm] = useState<any>({
     title: "",
     description: "",
-    tools: [],
-    features: [],
+    tools: "",
+    features: "",
     images: [],
     webUrl: "",
     downloadLink: "",
@@ -21,20 +21,18 @@ const EditProject = () => {
   });
 
   const [newImages, setNewImages] = useState<File[]>([]);
-  const [newTool, setNewTool] = useState("");
-  const [newFeature, setNewFeature] = useState("");
 
   useEffect(() => {
     fetchProject();
   }, [id]);
 
   const fetchProject = async () => {
-    const res = await axios.get(
-      backendURL + "/api/projects/" + id,
-    );
+    const res = await axios.get(backendURL + "/api/projects/" + id);
 
     setForm({
       ...res.data,
+      tools: res.data.tools.join(", "),
+      features: res.data.features.join(", "),
       secret: "",
     });
   };
@@ -71,36 +69,19 @@ const EditProject = () => {
     });
   };
 
-  /* REMOVE TOOL / FEATURE */
-
-  const removeItem = (index: number, field: "tools" | "features") => {
-    const arr = [...form[field]];
-    arr.splice(index, 1);
-
-    setForm((prev: any) => ({
-      ...prev,
-      [field]: arr,
-    }));
-  };
-
-  /* ADD TOOL / FEATURE */
-
-  const addItem = (value: string, field: "tools" | "features", setter: any) => {
-    if (!value.trim()) return;
-
-    setForm((prev: any) => ({
-      ...prev,
-      [field]: [...prev[field], value],
-    }));
-
-    setter("");
-  };
-
   /* UPDATE PROJECT */
 
   const updateProject = async () => {
     try {
       const formData = new FormData();
+
+      const tools = form.tools.length
+        ? form?.tools?.split(",").map((t: any) => t.trim())
+        : [];
+
+      const features = form.features.length
+        ? form?.features?.split(",").map((f: any) => f.trim())
+        : [];
 
       formData.append("title", form.title);
       formData.append("description", form.description);
@@ -109,8 +90,9 @@ const EditProject = () => {
 
       /* IMPORTANT FIX */
 
-      formData.append("tools", JSON.stringify(form.tools));
-      formData.append("features", JSON.stringify(form.features));
+      formData.append("tools", JSON.stringify(tools));
+      formData.append("features", JSON.stringify(features));
+
       formData.append("existingImages", JSON.stringify(form.images));
 
       /* NEW IMAGES */
@@ -119,16 +101,12 @@ const EditProject = () => {
         formData.append("images", img);
       });
 
-      await axios.put(
-        backendURL + "/api/projects/" + id,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            "x-admin-secret": form.secret,
-          },
+      await axios.put(backendURL + "/api/projects/" + id, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "x-admin-secret": form.secret,
         },
-      );
+      });
 
       alert("Project Updated Successfully");
     } catch (err) {
@@ -173,34 +151,11 @@ const EditProject = () => {
 
           <div className="flex gap-2 mb-3">
             <input
-              value={newTool}
-              onChange={(e) => setNewTool(e.target.value)}
-              placeholder="Add Tool"
+              value={form.tools}
+              onChange={(e) => setForm({ ...form, tools: e.target.value })}
+              placeholder="ex: React, Node.js, TypeScript"
               className="flex-1 p-2 bg-black border border-gray-600 rounded"
             />
-
-            <button
-              onClick={() => addItem(newTool, "tools", setNewTool)}
-              className="bg-[#E6FF00] text-black px-4 rounded"
-            >
-              Add
-            </button>
-          </div>
-
-          <div className="flex flex-wrap gap-2 mb-6">
-            {form.tools.map((tool: string, index: number) => (
-              <div
-                key={index}
-                className="bg-gray-800 px-3 py-1 rounded flex items-center gap-2"
-              >
-                {tool}
-
-                <FaTrash
-                  className="cursor-pointer text-red-400"
-                  onClick={() => removeItem(index, "tools")}
-                />
-              </div>
-            ))}
           </div>
 
           {/* FEATURES */}
@@ -209,34 +164,11 @@ const EditProject = () => {
 
           <div className="flex gap-2 mb-3">
             <input
-              value={newFeature}
-              onChange={(e) => setNewFeature(e.target.value)}
-              placeholder="Add Feature"
+              value={form.features}
+              onChange={(e) => setForm({ ...form, features: e.target.value })}
+              placeholder="ex: Real-time Collaboration, live tracking, User Authentication"
               className="flex-1 p-2 bg-black border border-gray-600 rounded"
             />
-
-            <button
-              onClick={() => addItem(newFeature, "features", setNewFeature)}
-              className="bg-[#E6FF00] text-black px-4 rounded"
-            >
-              Add
-            </button>
-          </div>
-
-          <div className="flex flex-wrap gap-2 mb-6">
-            {form.features.map((feature: string, index: number) => (
-              <div
-                key={index}
-                className="bg-gray-800 px-3 py-1 rounded flex items-center gap-2"
-              >
-                {feature}
-
-                <FaTrash
-                  className="cursor-pointer text-red-400"
-                  onClick={() => removeItem(index, "features")}
-                />
-              </div>
-            ))}
           </div>
 
           {/* IMAGES */}
@@ -256,7 +188,7 @@ const EditProject = () => {
             {form.images.map((img: string, index: number) => (
               <div key={index} className="relative">
                 <img
-                  src={backendURL+img}
+                  src={backendURL + img}
                   // src={"http://localhost:8000" + img}
                   className="h-[120px] w-full object-cover border border-gray-600"
                 />

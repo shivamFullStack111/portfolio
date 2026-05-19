@@ -37,6 +37,9 @@ router.post("/", adminAuth, upload.array("images", 10), async (req, res) => {
   try {
     const imagePaths = req.files.map((file) => `/uploads/${file.filename}`);
 
+    console.log(JSON.parse(req.body.tools));
+    console.log(JSON.parse(req.body.features));
+
     const project = await Project.create({
       title: req.body.title,
       description: req.body.description,
@@ -47,12 +50,10 @@ router.post("/", adminAuth, upload.array("images", 10), async (req, res) => {
       images: imagePaths,
     });
 
-    res.send({success:true, project});
+    res.send({ success: true, project });
   } catch (err) {
-    res.send({success:false, message: err.message });
+    res.send({ success: false, message: err.message });
   }
-
-  
 });
 
 /* UPDATE */
