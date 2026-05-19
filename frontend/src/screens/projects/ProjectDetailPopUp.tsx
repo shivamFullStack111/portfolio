@@ -58,10 +58,10 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
     try {
       setisLoading(true);
 
-      const res = await axios.post(
-        backendURL+"/api/feedback",
-        { ...feedbackForm, projectTitle: selectedProject.title }
-      );
+      const res = await axios.post(backendURL + "/api/feedback", {
+        ...feedbackForm,
+        projectTitle: selectedProject.title,
+      });
 
       if (res.data.success) {
         toast.success(res.data.message);
@@ -79,16 +79,13 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
 
   return (
     <div className="fixed z-40 flex justify-center items-start top-0 left-0 w-full h-screen">
-
       <div className="container flex justify-center items-center bg-[#00000071] h-screen">
-
         <motion.div
           initial={{ scale: 0.7 }}
           animate={{ scale: isClosing ? 0 : open ? 1 : 0.7 }}
           transition={{ duration: 0.4 }}
           className="md:max-w-[650px] w-full h-[95%] relative flex flex-col overflow-y-auto bg-[#0b0b0b] border border-gray-400 rounded-lg"
         >
-
           {/* Close */}
           <RxCross1
             onClick={() => {
@@ -113,40 +110,34 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
 
           {/* Image section */}
 
-          <div className="relative min-h-[340px] w-full">
-
+          <div className="relative mt-10 min-h-[340px] w-full">
             <img
-              src={selectedImage || backendURL + selectedProject.images?.[0]}
+              src={selectedImage? backendURL + selectedImage:  backendURL + selectedProject.images?.[0]}
               className="h-full mx-auto"
               alt=""
             />
 
-            <div className="absolute bg-[#0004] bottom-0 w-full">
-
-              <div className="w-[70%] p-3 mx-auto flex justify-center gap-2 overflow-x-auto">
-
-                {selectedProject.images?.map((img: string, index: number) => (
-
-                  <div
-                    key={index}
-                    onClick={() => setselectedImage(img)}
-                    className={`h-12 w-12 cursor-pointer border border-[#E6FF00] rounded-md ${
-                      selectedImage === img && "scale-110"
-                    }`}
-                  >
-                    <img src={backendURL + img} className="h-full  mx-auto" alt="" />
-                  </div>
-
-                ))}
-
-              </div>
-
-            </div>
-
+            <div className="absolute bg-[#0004] bottom-0 w-full"></div>
           </div>
 
           <div className="p-3">
-
+            <div className="w-full p-5 flex overflow-x-auto items-center gap-4 ">
+              {selectedProject.images?.map((img: string, index: number) => (
+                <div
+                  key={index}
+                  onClick={() => setselectedImage(img)}
+                  className={`min-h-12 min-w-12 cursor-pointer   ${
+                    selectedImage === img && "scale-110"
+                  }`}
+                >
+                  <img
+                    src={backendURL + img}
+                    className="h-full  mx-auto"
+                    alt=""
+                  />
+                </div>
+              ))}
+            </div>
             {/* Title */}
 
             <p
@@ -159,7 +150,6 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
             {/* Description */}
 
             <div className="mt-6">
-
               <p
                 style={{ borderColor: primary }}
                 className="border-b-3 text-xl inline font-semibold"
@@ -167,16 +157,12 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
                 Description
               </p>
 
-              <p className="italic px-2 mt-2">
-                {selectedProject.description}
-              </p>
-
+              <p className="italic px-2 mt-2">{selectedProject.description}</p>
             </div>
 
             {/* Tools */}
 
             <div className="mt-6">
-
               <p
                 style={{ borderColor: primary }}
                 className="border-b-3 text-xl inline font-semibold"
@@ -185,21 +171,17 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
               </p>
 
               <ul className="flex px-2 flex-wrap mt-2">
-
                 {selectedProject.tools?.map((tool, index) => (
                   <li key={index} className="w-1/3">
                     {tool}
                   </li>
                 ))}
-
               </ul>
-
             </div>
 
             {/* Features */}
 
             <div className="mt-6">
-
               <p
                 style={{ borderColor: primary }}
                 className="border-b-3 text-xl inline font-semibold"
@@ -208,13 +190,10 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
               </p>
 
               <ul className="px-2 mt-2 italic">
-
                 {selectedProject.features?.map((feature, index) => (
                   <li key={index}>{feature}</li>
                 ))}
-
               </ul>
-
             </div>
 
             <p className="w-[95%] mx-auto border-b-2 border-gray-500 my-12"></p>
@@ -222,9 +201,7 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
             {/* Feedback */}
 
             <div className="flex justify-center w-full">
-
               <div className="w-[600px]">
-
                 <p
                   style={{ borderColor: primary }}
                   className="border-b-3 text-center text-xl font-semibold"
@@ -233,7 +210,6 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
                 </p>
 
                 <div className="flex flex-wrap">
-
                   <InputField
                     value={feedbackForm.name}
                     title="Name"
@@ -257,13 +233,10 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
                   {/* Rating */}
 
                   <div className="p-2 mt-4 w-full">
-
                     <div className="text-sm text-gray-300">Rate:</div>
 
                     <div className="flex justify-center gap-2">
-
                       {Array.from({ length: 5 }).map((_, i) => {
-
                         if (i >= feedbackForm.rate) {
                           return (
                             <FaRegStar
@@ -291,17 +264,13 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
                             className="text-2xl cursor-pointer text-[#E6FF00]"
                           />
                         );
-
                       })}
-
                     </div>
-
                   </div>
 
                   {/* Message */}
 
                   <div className="p-2 mt-4 w-full">
-
                     <textarea
                       rows={5}
                       placeholder="Enter your message"
@@ -322,28 +291,18 @@ const ProjectDetailPopUp: React.FC<PROJECTDETAIL_POPUP> = ({
                       onClick={handleSubmit}
                       title="Submit"
                     />
-
                   </div>
-
                 </div>
-
               </div>
-
             </div>
-
           </div>
-
         </motion.div>
-
       </div>
-
     </div>
   );
 };
 
 export default ProjectDetailPopUp;
-
-
 
 interface INPUTFIELD_TYPE {
   title: string;

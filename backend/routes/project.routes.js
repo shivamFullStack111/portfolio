@@ -58,16 +58,16 @@ router.post("/", adminAuth, upload.array("images", 10), async (req, res) => {
 
 /* UPDATE */
 
-router.put("/:id", adminAuth, upload.array("images", 10), async (req, res) => {
+router.put("/:id", adminAuth, upload.array("images"), async (req, res) => {
   try {
-    let existingImages = JSON.parse(req.body.existingImages || "[]");
+    let images = JSON.parse(req.body.images || "[]");
 
     /* NEW IMAGES */
 
     if (req.files && req.files.length > 0) {
       const newImages = req.files.map((file) => `/uploads/${file.filename}`);
 
-      existingImages = [...existingImages, ...newImages];
+      images = [...images, ...newImages];
     }
 
     const updated = await Project.findByIdAndUpdate(
@@ -79,7 +79,7 @@ router.put("/:id", adminAuth, upload.array("images", 10), async (req, res) => {
         features: req.body.features ? JSON.parse(req.body.features) : [],
         webUrl: req.body.webUrl,
         downloadLink: req.body.downloadLink,
-        images: existingImages,
+        images: images,
       },
       { new: true },
     );

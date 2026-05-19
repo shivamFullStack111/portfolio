@@ -93,7 +93,7 @@ const EditProject = () => {
       formData.append("tools", JSON.stringify(tools));
       formData.append("features", JSON.stringify(features));
 
-      formData.append("existingImages", JSON.stringify(form.images));
+      formData.append("images", JSON.stringify(form.images));
 
       /* NEW IMAGES */
 
